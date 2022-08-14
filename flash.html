@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Home Flash</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600&family=Prompt:wght@500;600;700&family=Ubuntu:wght@400;500;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primaryColor: #E1AD01;
+            --secondaryColor: #FFFFFF;
+            --themeFont: "Work Sans";
+        }
+
+        .s1504_universal * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .s1504_container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0px 20px;
+        }
+
+        .s1504_flash_main_section {
+            padding-top: 40px;
+            padding-bottom: 35px;
+            background-color: #1e272e;
+        }
+
+        /* flash top area */
+        .s1504_flash_top_area {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s1504_flash_time_counter_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .s1504_flash_title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--secondaryColor);
+        }
+
+        .s1504_flash_time_counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s1504_flash_counter_number {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primaryColor);
+        }
+
+        .s1504_time_divider {
+            color: #778691;
+        }
+
+        /* Flash Product area */
+        .s1504_flash_product_container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .s1504_flash_single_product {
+            position: relative;
+        }
+
+        .s1504_flash_product_wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 20px;
+            grid-row-gap: 25px;
+        }
+
+        .s1504_product_img {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+
+        .s1504_product_top_area {
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 7%);
+            border-left: 1px solid rgba(255, 255, 255, 7%);
+            border-right: 1px solid rgba(255, 255, 255, 7%);
+            transition: all 0.3s ease-out;
+        }
+
+        .s1504_product_sale_bacth_wrapper {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 25px;
+            height: 25px;
+
+        }
+
+        .s1504_product_sale_bacth_text {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondaryColor);
+            font-size: 8px;
+            font-weight: 400;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 10%);
+            transition: all 0.3s ease-out;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .s1504_product_rating_wrapper {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .s1504_product_rating {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+
+        }
+
+        svg {
+            display: flex;
+        }
+
+        .s1504_wishlist_cart_icon_container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .s1504_wishlist_cart_icon_wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .s1504_icon_wrapper {
+            cursor: pointer;
+            height: 25px;
+            width: 25px;
+            position: relative;
+            background-color: rgba(255, 255, 255, 10%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s0604_large_device_view_icon {
+            display: none;
+        }
+
+        .s0604_large_device_wishlist {
+            display: none;
+        }
+
+        /* active add wishlist class (this class add to be span tag) */
+        .s1504_active_wishlist_add svg path {
+            fill: var(--primaryColor);
+            stroke: var(--primaryColor);
+        }
+
+
+
+        /* product bottom area */
+        .s1504_product_bottom_area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 5%);
+            padding: 8px 8px;
+            gap: 8px;
+        }
+
+        .s1504_product_name_wrapper,
+        .s1504_product_new_price_wrapper,
+        .s1504_product_old_price_wrapper {
+            display: flex;
+        }
+
+        .s1504_product_variant {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 3px;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 30%);
+        }
+
+        .s1504_product_name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--secondaryColor);
+        }
+
+        .s1504_product_price_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 17px;
+        }
+
+        .s1504_product_price_container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .s1504_product_old_price_wrapper {
+            position: relative;
+        }
+
+        .s1504_product_old_price {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(119, 134, 145, 100%);
+        }
+
+        .s1504_old_price_delete::after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 30%);
+            position: absolute;
+            left: 50%;
+            top: 53%;
+            transform: translate(-50%, -100%);
+        }
+
+        .s1504_product_new_price {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primaryColor);
+        }
+
+        /* view all butn */
+        .s1504_view_all_btn_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .s1504_view_all_btn {
+            border: none;
+            padding: 8px 20px;
+            background-color: transparent;
+            color: var(--secondaryColor);
+            font-size: 12px;
+            font-weight: 600;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            z-index: 2;
+        }
+
+        .s1504_view_all_btn_bg::after {
+            content: "";
+            background-color: var(--primaryColor);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transition: all 0.4s ease-out;
+            z-index: -1;
+        }
+
+
+        @media screen and (min-width:640px) {
+
+            /* flash top area */
+            .s1504_flash_main_section {
+                padding-top: 70px;
+                padding-bottom: 40px;
+            }
+
+            .s1504_flash_title {
+                font-size: 24px;
+            }
+
+            .s1504_flash_counter_number {
+                font-size: 16px;
+            }
+
+            .s1504_flash_time_counter_wrapper {
+                gap: 7px;
+            }
+
+            /* flash product ara */
+
+            .s1504_flash_product_container {
+                margin-top: 25px;
+                margin-bottom: 40px;
+            }
+
+            .s1504_flash_product_wrapper {
+                grid-template-columns: repeat(2, 1fr);
+                grid-column-gap: 30px;
+                grid-row-gap: 35px;
+            }
+
+            .s1504_product_sale_bacth_wrapper {
+                top: 15px;
+                left: 15px;
+                width: 30px;
+                height: 30px;
+            }
+
+            .s1504_product_sale_bacth_text {
+                font-size: 10px;
+                height: 30px;
+                width: 30px;
+                top: 15px;
+                left: 15px;
+
+            }
+
+            .s1504_icon_wrapper {
+                height: 30px;
+                width: 30px;
+            }
+
+            .s1504_wishlist_cart_icon_container {
+                top: 15px;
+                right: 15px;
+            }
+
+            .s1504_icon_wrapper svg {
+                height: 12px;
+                width: 12px;
+            }
+
+            .s1504_product_rating_start svg {
+                height: 13px;
+                width: 13px;
+            }
+
+            .s1504_add_cart_icon_wrapper svg {
+                height: 16px;
+                width: 16px;
+                cursor: pointer;
+            }
+
+            .s1504_active_add_cart_icon_wrapper svg path {
+                opacity: 1;
+            }
+
+
+
+
+            /* product bottom area */
+            .s1504_product_bottom_area {
+                gap: 10px;
+                padding: 10px 10px;
+            }
+
+            .s1504_product_variant {
+                gap: 5px;
+                font-size: 14px;
+            }
+
+            .s1504_product_name {
+                font-size: 14px;
+            }
+
+            .s1504_product_price_wrapper {
+                gap: 60px;
+            }
+
+            .s1504_product_price_container {
+                gap: 10px;
+            }
+
+            .s1504_product_old_price {
+                font-size: 14px;
+            }
+
+            .s1504_product_new_price {
+                font-size: 14px;
+            }
+
+            .s1504_wishlist_cart_icon_wrapper {
+                gap: 15px;
+            }
+
+            /* view more btn */
+            .s1504_view_all_btn {
+                font-size: 14px;
+                padding: 9px 25px;
+            }
+
+
+
+
+        }
+
+        @media screen and (min-width:768px) {
+            .s1504_flash_product_wrapper {
+                grid-template-columns: repeat(3, 1fr);
+                grid-column-gap: 30px;
+                grid-row-gap: 35px;
+            }
+        }
+
+        @media screen and (min-width:1025px) {
+            .s1504_flash_product_wrapper {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .s1504_flash_main_section {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+
+            .s1504_flash_title {
+                font-size: 28px;
+            }
+
+            .s1504_flash_product_container {
+                margin-bottom: 50px;
+            }
+
+            .s1504_product_sale_bacth_text {
+                top: 15px;
+                right: 18px;
+            }
+
+            .s0604_large_device_view_icon {
+                display: block;
+            }
+
+            .s0604_large_device_wishlist {
+                display: block;
+            }
+
+            .s1504_product_price_wrapper {
+                gap: 84px;
+            }
+
+            /* product batch animation */
+            .s1504_product_sale_bacth_text {
+                transform: translateX(-120%);
+                transition: all 0.3s ease-out;
+                opacity: 0;
+            }
+
+            .s1504_wishlist_cart_icon_container {
+                transform: translateX(120%);
+                transition: all 0.3s ease-out;
+                opacity: 0;
+            }
+
+            .s1504_product_rating_wrapper {
+                opacity: 0;
+                transition: all 0.3s ease-out;
+            }
+
+            .s1504_product_top_area {
+                border-top: 1px solid transparent;
+                border-left: 1px solid transparent;
+                border-right: 1px solid transparent;
+                transition: all 0.3s ease-out;
+            }
+
+            /* active wishlist class */
+
+            .s1504_view_all_btn:hover.s1504_view_all_btn_bg:after {
+                height: 2px;
+            }
+
+            .s1504_view_all_btn:hover.s1504_view_all_btn {
+                color: var(--secondaryColor);
+            }
+
+            .s1504_flash_single_product:hover .s1504_product_sale_bacth_text {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+
+            .s1504_flash_single_product:hover .s1504_wishlist_cart_icon_container {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+
+            .s1504_flash_single_product:hover .s1504_product_rating_wrapper {
+                opacity: 1;
+            }
+
+            .s1504_flash_single_product:hover .s1504_product_top_area {
+                border-top: 1px solid rgba(255, 255, 255, 7%);
+                border-left: 1px solid rgba(255, 255, 255, 7%);
+                border-right: 1px solid rgba(255, 255, 255, 7%);
+            }
+
+        }
+
+        @media screen and (min-width:1365px) {
+            .s1504_flash_product_wrapper {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="s1504_flash_main_section s1504_universal">
+        <!-- Flash Product area -->
+        <div class="s1504_container">
+
+            <!-- Flash Top area -->
+            <div class="s1504_flash_top_area">
+                <div class="s1504_flash_title_wrapper">
+                    <span class="s1504_flash_title">Flash Sale</span>
+                </div>
+                <div class="s1504_flash_time_counter_wrapper">
+                    <div class="s1504_flash_time_counter"><span class="s1504_flash_counter_number">07d</span></div>
+                    <span class="s1504_time_divider">:</span>
+                    <div class="s1504_flash_time_counter"><span class="s1504_flash_counter_number">05h</span></div>
+                    <span class="s1504_time_divider">:</span>
+                    <div class="s1504_flash_time_counter"><span class="s1504_flash_counter_number">02m</span></div>
+                    <span class="s1504_time_divider">:</span>
+                    <div class="s1504_flash_time_counter"><span class="s1504_flash_counter_number">25s</span></div>
+                </div>
+            </div>
+
+            <!-- flash product area -->
+            <div class="s1504_flash_product_container">
+                <div class="s1504_flash_product_wrapper">
+                    <!-- flash single product -->
+                    <div class="s1504_flash_single_product">
+
+                        <div class="s1504_product_top_area ">
+
+                            <div class="s1504_product_img_main_wrapper">
+                                <div class="s1504_product_img_wrapper">
+                                    <img class="s1504_product_img" src="./images/571641_1-removebg-preview.png" alt="">
+                                </div>
+                            </div>
+                            <div class="s1504_product_batch_wrapper">
+
+                                <div class="s1504_product_sale_bacth_text_wrapper">
+                                    <span class="s1504_product_sale_bacth_text">Sale</span>
+                                </div>
+
+                                <div class="s1504_wishlist_cart_icon_container">
+                                    <div class="s1504_wishlist_cart_icon_wrapper">
+                                        <div class="s1504_icon_wrapper ">
+                                            <span class="s1504_active_wishlist_add"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="11.004" height="10.438"
+                                                    viewBox="0 0 11.004 10.438">
+                                                    <path id="heart_1_" data-name="heart (1)"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.507 -0.417)" fill="none" stroke="#fff"
+                                                        stroke-width="1" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="s1504_product_rating_wrapper">
+                                    <ul class="s1504_product_rating">
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="s1504_product_bottom_area">
+
+                            <div class="s1504_product_name_wrapper">
+                                <span class="s1504_product_name">Casual Sun Glass</span>
+                            </div>
+                            <div class="s1504_product_variant_wrapper">
+                                <span class="s1504_product_variant">Black | Pink</span>
+                            </div>
+
+                            <div class="s1504_product_price_wrapper">
+                                <div class="s1504_product_price_container">
+                                    <div class="s1504_product_old_price_wrapper">
+                                        <span class="s1504_product_old_price s1504_old_price_delete"> BDT3500</span>
+                                    </div>
+                                    <div class="s1504_product_new_price_wrapper">
+                                        <span class="s1504_product_new_price"> BDT3500</span>
+                                    </div>
+                                </div>
+                                <div class="s1504_add_cart_icon_wrapper">
+                                    <span class="s1504_active_add_cart_icon_wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 14 14">
+                                            <path id="add"
+                                                d="M7,0a7,7,0,1,0,7,7A7,7,0,0,0,7,0ZM9.333,7.583H7.583v1.75a.583.583,0,0,1-1.167,0V7.583H4.667a.583.583,0,1,1,0-1.167h1.75V4.667a.583.583,0,1,1,1.167,0v1.75h1.75a.583.583,0,0,1,0,1.167Z"
+                                                fill="#fff" opacity="0.5" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- flash single product -->
+                    <div class="s1504_flash_single_product">
+
+                        <div class="s1504_product_top_area ">
+
+                            <div class="s1504_product_img_main_wrapper">
+                                <div class="s1504_product_img_wrapper">
+                                    <img class="s1504_product_img" src="./images/571641_1-removebg-preview.png" alt="">
+                                </div>
+                            </div>
+                            <div class="s1504_product_batch_wrapper">
+
+                                <div class="s1504_product_sale_bacth_text_wrapper">
+                                    <span class="s1504_product_sale_bacth_text">Sale</span>
+                                </div>
+
+                                <div class="s1504_wishlist_cart_icon_container">
+                                    <div class="s1504_wishlist_cart_icon_wrapper">
+                                        <div class="s1504_icon_wrapper ">
+                                            <span class="s1504_active_wishlist_add"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="11.004" height="10.438"
+                                                    viewBox="0 0 11.004 10.438">
+                                                    <path id="heart_1_" data-name="heart (1)"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.507 -0.417)" fill="none" stroke="#fff"
+                                                        stroke-width="1" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="s1504_product_rating_wrapper">
+                                    <ul class="s1504_product_rating">
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="s1504_product_bottom_area">
+
+                            <div class="s1504_product_name_wrapper">
+                                <span class="s1504_product_name">Casual Sun Glass</span>
+                            </div>
+                            <div class="s1504_product_variant_wrapper">
+                                <span class="s1504_product_variant">Black | Pink</span>
+                            </div>
+
+                            <div class="s1504_product_price_wrapper">
+                                <div class="s1504_product_price_container">
+                                    <div class="s1504_product_old_price_wrapper">
+                                        <span class="s1504_product_old_price s1504_old_price_delete"> BDT3500</span>
+                                    </div>
+                                    <div class="s1504_product_new_price_wrapper">
+                                        <span class="s1504_product_new_price"> BDT3500</span>
+                                    </div>
+                                </div>
+                                <div class="s1504_add_cart_icon_wrapper">
+                                    <span class="s1504_active_add_cart_icon_wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 14 14">
+                                            <path id="add"
+                                                d="M7,0a7,7,0,1,0,7,7A7,7,0,0,0,7,0ZM9.333,7.583H7.583v1.75a.583.583,0,0,1-1.167,0V7.583H4.667a.583.583,0,1,1,0-1.167h1.75V4.667a.583.583,0,1,1,1.167,0v1.75h1.75a.583.583,0,0,1,0,1.167Z"
+                                                fill="#fff" opacity="0.5" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- flash single product -->
+                    <div class="s1504_flash_single_product">
+
+                        <div class="s1504_product_top_area ">
+
+                            <div class="s1504_product_img_main_wrapper">
+                                <div class="s1504_product_img_wrapper">
+                                    <img class="s1504_product_img" src="./images/571641_1-removebg-preview.png" alt="">
+                                </div>
+                            </div>
+                            <div class="s1504_product_batch_wrapper">
+
+                                <div class="s1504_product_sale_bacth_text_wrapper">
+                                    <span class="s1504_product_sale_bacth_text">Sale</span>
+                                </div>
+
+                                <div class="s1504_wishlist_cart_icon_container">
+                                    <div class="s1504_wishlist_cart_icon_wrapper">
+                                        <div class="s1504_icon_wrapper ">
+                                            <span class="s1504_active_wishlist_add"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="11.004" height="10.438"
+                                                    viewBox="0 0 11.004 10.438">
+                                                    <path id="heart_1_" data-name="heart (1)"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.507 -0.417)" fill="none" stroke="#fff"
+                                                        stroke-width="1" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="s1504_product_rating_wrapper">
+                                    <ul class="s1504_product_rating">
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="s1504_product_bottom_area">
+
+                            <div class="s1504_product_name_wrapper">
+                                <span class="s1504_product_name">Casual Sun Glass</span>
+                            </div>
+                            <div class="s1504_product_variant_wrapper">
+                                <span class="s1504_product_variant">Black | Pink</span>
+                            </div>
+
+                            <div class="s1504_product_price_wrapper">
+                                <div class="s1504_product_price_container">
+                                    <div class="s1504_product_old_price_wrapper">
+                                        <span class="s1504_product_old_price s1504_old_price_delete"> BDT3500</span>
+                                    </div>
+                                    <div class="s1504_product_new_price_wrapper">
+                                        <span class="s1504_product_new_price"> BDT3500</span>
+                                    </div>
+                                </div>
+                                <div class="s1504_add_cart_icon_wrapper">
+                                    <span class="s1504_active_add_cart_icon_wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 14 14">
+                                            <path id="add"
+                                                d="M7,0a7,7,0,1,0,7,7A7,7,0,0,0,7,0ZM9.333,7.583H7.583v1.75a.583.583,0,0,1-1.167,0V7.583H4.667a.583.583,0,1,1,0-1.167h1.75V4.667a.583.583,0,1,1,1.167,0v1.75h1.75a.583.583,0,0,1,0,1.167Z"
+                                                fill="#fff" opacity="0.5" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- flash single product -->
+                    <div class="s1504_flash_single_product">
+
+                        <div class="s1504_product_top_area ">
+
+                            <div class="s1504_product_img_main_wrapper">
+                                <div class="s1504_product_img_wrapper">
+                                    <img class="s1504_product_img" src="./images/571641_1-removebg-preview.png" alt="">
+                                </div>
+                            </div>
+                            <div class="s1504_product_batch_wrapper">
+
+                                <div class="s1504_product_sale_bacth_text_wrapper">
+                                    <span class="s1504_product_sale_bacth_text">Sale</span>
+                                </div>
+
+                                <div class="s1504_wishlist_cart_icon_container">
+                                    <div class="s1504_wishlist_cart_icon_wrapper">
+                                        <div class="s1504_icon_wrapper ">
+                                            <span class="s1504_active_wishlist_add"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="11.004" height="10.438"
+                                                    viewBox="0 0 11.004 10.438">
+                                                    <path id="heart_1_" data-name="heart (1)"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.507 -0.417)" fill="none" stroke="#fff"
+                                                        stroke-width="1" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="s1504_product_rating_wrapper">
+                                    <ul class="s1504_product_rating">
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="s1504_product_bottom_area">
+
+                            <div class="s1504_product_name_wrapper">
+                                <span class="s1504_product_name">Casual Sun Glass</span>
+                            </div>
+                            <div class="s1504_product_variant_wrapper">
+                                <span class="s1504_product_variant">Black | Pink</span>
+                            </div>
+
+                            <div class="s1504_product_price_wrapper">
+                                <div class="s1504_product_price_container">
+                                    <div class="s1504_product_old_price_wrapper">
+                                        <span class="s1504_product_old_price s1504_old_price_delete"> BDT3500</span>
+                                    </div>
+                                    <div class="s1504_product_new_price_wrapper">
+                                        <span class="s1504_product_new_price"> BDT3500</span>
+                                    </div>
+                                </div>
+                                <div class="s1504_add_cart_icon_wrapper">
+                                    <span class="s1504_active_add_cart_icon_wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 14 14">
+                                            <path id="add"
+                                                d="M7,0a7,7,0,1,0,7,7A7,7,0,0,0,7,0ZM9.333,7.583H7.583v1.75a.583.583,0,0,1-1.167,0V7.583H4.667a.583.583,0,1,1,0-1.167h1.75V4.667a.583.583,0,1,1,1.167,0v1.75h1.75a.583.583,0,0,1,0,1.167Z"
+                                                fill="#fff" opacity="0.5" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- flash single product -->
+                    <div class="s1504_flash_single_product">
+
+                        <div class="s1504_product_top_area ">
+
+                            <div class="s1504_product_img_main_wrapper">
+                                <div class="s1504_product_img_wrapper">
+                                    <img class="s1504_product_img" src="./images/571641_1-removebg-preview.png" alt="">
+                                </div>
+                            </div>
+                            <div class="s1504_product_batch_wrapper">
+
+                                <div class="s1504_product_sale_bacth_text_wrapper">
+                                    <span class="s1504_product_sale_bacth_text">Sale</span>
+                                </div>
+
+                                <div class="s1504_wishlist_cart_icon_container">
+                                    <div class="s1504_wishlist_cart_icon_wrapper">
+                                        <div class="s1504_icon_wrapper ">
+                                            <span class="s1504_active_wishlist_add"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="11.004" height="10.438"
+                                                    viewBox="0 0 11.004 10.438">
+                                                    <path id="heart_1_" data-name="heart (1)"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.507 -0.417)" fill="none" stroke="#fff"
+                                                        stroke-width="1" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="s1504_product_rating_wrapper">
+                                    <ul class="s1504_product_rating">
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s1504_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="s1504_product_bottom_area">
+
+                            <div class="s1504_product_name_wrapper">
+                                <span class="s1504_product_name">Casual Sun Glass</span>
+                            </div>
+                            <div class="s1504_product_variant_wrapper">
+                                <span class="s1504_product_variant">Black | Pink</span>
+                            </div>
+
+                            <div class="s1504_product_price_wrapper">
+                                <div class="s1504_product_price_container">
+                                    <div class="s1504_product_old_price_wrapper">
+                                        <span class="s1504_product_old_price s1504_old_price_delete"> BDT3500</span>
+                                    </div>
+                                    <div class="s1504_product_new_price_wrapper">
+                                        <span class="s1504_product_new_price"> BDT3500</span>
+                                    </div>
+                                </div>
+                                <div class="s1504_add_cart_icon_wrapper">
+                                    <span class="s1504_active_add_cart_icon_wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 14 14">
+                                            <path id="add"
+                                                d="M7,0a7,7,0,1,0,7,7A7,7,0,0,0,7,0ZM9.333,7.583H7.583v1.75a.583.583,0,0,1-1.167,0V7.583H4.667a.583.583,0,1,1,0-1.167h1.75V4.667a.583.583,0,1,1,1.167,0v1.75h1.75a.583.583,0,0,1,0,1.167Z"
+                                                fill="#fff" opacity="0.5" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- view more btn  -->
+            <div class="s1504_view_all_btn_wrapper">
+                <button class="s1504_view_all_btn s1504_view_all_btn_bg">View All</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
